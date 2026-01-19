@@ -7,6 +7,30 @@
     <title>Api Consumer App</title>
   </head>
   <body>
+    <main>
+      <h1>Api Consumer App</h1>
+      <section class="form-container">
+        <form>
+          <label for="http-client">Select an http-client:</label>
+          <select name="http-client" id="htpp-client">
+            <option value="fetch">Use Fetch</option>
+            <option value="axios">Use Axios</option>
+          </select>
+          <label for="search">Search: </label>
+          <input type="text" name="search" id="search" placeholder="Search">
+          <button type="submit">Get data</button>
+        </form>
+      </section>
+      <section class="response-container">
+        <div class="response-status-container">
+          <h2>Response Status</h2>
+        </div>
+        <div class="response-data-container">
+          <h2>Response Results</h2>
+          <div class="dynamic-data-container"></div>
+        </div>
+      </section>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

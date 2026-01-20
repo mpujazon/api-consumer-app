@@ -3,7 +3,7 @@ import axios, { } from 'axios';
 
 const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 let currentPage: number = 1;
-const itemsPerPage: number = 10;
+const itemsPerPage: number = 9;
 
 const httpClientSelectorEl = document.getElementById('http-client') as HTMLSelectElement;
 const searchInputEl = document.getElementById('search-input') as HTMLInputElement;
@@ -12,7 +12,7 @@ const loadingElement = document.getElementById('loading-icon') as HTMLImageEleme
 const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
 
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
-const dynamicDataContainerEl = document.getElementById('dynamic-data-container') as HTMLDivElement;
+const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
 
 form.addEventListener('submit', async (e: Event)=> {
     e.preventDefault();
@@ -61,11 +61,27 @@ const fetchDataWithAxios = async(searchTerm: string): Promise<void> => {
     }).then((response) => { 
         const data = response.data;
         const totalItems = response.headers['x-total-count'];
-        console.log({data}, {totalItems});
-        
 
-        // displayResults();
+        displayResults(data, totalItems);
     }).catch((error) => {
         throw new Error(error)
+    });
+}
+
+const displayResults = (items:JSONPlaceHolderData, totalItems: number): void => {
+    resultsContainerEl.innerHTML = '';
+    if(items.length === 0){
+        resultsContainerEl.innerHTML = `<p>No results</p>`;
+    }
+    items.forEach((item)=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${item.title}</h3>
+            <p><strong>ID:</strong> ${item.id}</p>
+            <p><strong>User ID:</strong> ${item.userId}</p>
+            <p><strong>Body:</strong> ${item.body}</p>
+        `;
+        resultsContainerEl.appendChild(card);
     });
 }

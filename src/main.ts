@@ -27,3 +27,7 @@ const showError = (message: string): void => {
     errorElement.textContent = message;
     errorElement.classList.remove('hidden');
 }
+
+const hideError = (): void => {
+    errorElement.classList.add('hidden');
+}

@@ -17,3 +17,7 @@ form.addEventListener('submit', (e: Event)=> {
 const showLoading = (): void => {
     loadingElement.classList.remove('hidden');
 }
+
+const hideLoading = (): void => {
+    loadingElement.classList.add('hidden');
+}

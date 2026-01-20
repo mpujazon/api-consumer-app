@@ -6,6 +6,7 @@ const httpClientSelectorEl = document.getElementById('http-client') as HTMLSelec
 const searchInputEl = document.getElementById('search-input') as HTMLInputElement;
 const form = document.getElementById('http-client-form') as HTMLFormElement;
 const loadingElement = document.getElementById('loading-icon') as HTMLImageElement;
+const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
 
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const dynamicDataContainerEl = document.getElementById('dynamic-data-container') as HTMLDivElement;
@@ -20,4 +21,9 @@ const showLoading = (): void => {
 
 const hideLoading = (): void => {
     loadingElement.classList.add('hidden');
+}
+
+const showError = (message: string): void => {
+    errorElement.textContent = message;
+    errorElement.classList.remove('hidden');
 }

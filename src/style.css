@@ -141,6 +141,12 @@ button[type="submit"]:active {
     width: 50px;
 }
 
+#error-element{
+    background-color: var(--error-color);
+    padding: .5em;
+    border-radius: var(--radius);
+}
+
 .response-status-container,
 .response-data-container {
     background-color: var(--card-bg);

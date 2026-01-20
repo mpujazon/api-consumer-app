@@ -8,3 +8,7 @@ const form = document.getElementById('http-client-form') as HTMLFormElement;
 
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const dynamicDataContainerEl = document.getElementById('dynamic-data-container') as HTMLDivElement;
+
+form.addEventListener('submit', (e: Event)=> {
+    e.preventDefault();
+});

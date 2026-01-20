@@ -11,7 +11,7 @@
     <main>
       <h1>Api Consumer App</h1>
       <section class="form-container">
-        <form>
+        <form id="http-client-form">
           <div class="select-group">
             <label for="http-client">Select an http-client:</label>
             <select name="http-client" id="htpp-client">
@@ -21,18 +21,18 @@
           </div>
           <div class="search-group">
             <label for="search">Search: </label>
-            <input type="text" name="search" id="search" placeholder="Search">
+            <input type="text" name="search" id="search-input" placeholder="Search">
           </div>
           <button type="submit">Get data</button>
         </form>
       </section>
       <section class="response-container">
-        <div class="response-status-container">
+        <div class="response-status-container" id="response-status-container">
           <h2>Response Status</h2>
         </div>
         <div class="response-data-container">
           <h2>Response Results</h2>
-          <div class="dynamic-data-container"></div>
+          <div class="dynamic-data-container" id="dynamic-data-container"></div>
         </div>
       </section>
     </main>

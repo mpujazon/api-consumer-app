@@ -10,12 +10,14 @@ const searchInputEl = document.getElementById('search-input') as HTMLInputElemen
 const form = document.getElementById('http-client-form') as HTMLFormElement;
 const loadingElement = document.getElementById('loading-icon') as HTMLImageElement;
 const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
+const paginationButtonsContainer = document.getElementById('pagination-buttons-container') as HTMLDivElement;
 
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
 
 form.addEventListener('submit', async (e: Event)=> {
     e.preventDefault();
+    fetchDataWithAxios(searchInputEl.value)
 });
 
 const showLoading = (): void => {
@@ -84,4 +86,25 @@ const displayResults = (items:JSONPlaceHolderData, totalItems: number): void => 
         `;
         resultsContainerEl.appendChild(card);
     });
+    setupPagination(totalItems);
+}
+
+const setupPagination = (totalItems: number): void => {
+    paginationButtonsContainer.innerHTML = '';
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.addEventListener('click', () => { handlePageButtonClick(button) });
+        button.textContent = i.toString();
+        if(i === currentPage){
+            button.disabled = true;
+        }
+        paginationButtonsContainer.appendChild(button); 
+    }
+}
+
+const handlePageButtonClick = (button: HTMLButtonElement): void => {
+    currentPage = Number(button.textContent);
+    // fetchData();
 }

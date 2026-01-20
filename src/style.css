@@ -156,7 +156,7 @@ button[type="submit"]:active {
     box-shadow: var(--shadow);
 }
 
-.dynamic-data-container {
+.results-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
@@ -191,6 +191,38 @@ button[type="submit"]:active {
     font-size: 0.9rem;
 }
 
+#pagination-buttons-container{
+    grid-column: 2/3;
+    padding-top: 1.5rem;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    button{
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: .5em 1em;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+        &:hover{
+            background-color: var(--accent-hover);
+        }
+        &:active{
+            transform: scale(0.98);
+        }
+        &:disabled{
+            background-color: var(--border-color);
+            &:hover{
+                cursor: default;
+            }
+        }
+    }
+}
 .hidden {
     display: none !important;
 }

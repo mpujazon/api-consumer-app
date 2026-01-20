@@ -130,3 +130,57 @@ button[type="submit"]:hover {
 button[type="submit"]:active {
     transform: scale(0.98);
 }
+
+.response-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.response-status-container,
+.response-data-container {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.dynamic-data-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    min-height: 50px;
+}
+
+.card {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    border-color: var(--accent-color);
+}
+
+.card h3 {
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none !important;
+}

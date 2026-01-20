@@ -1,4 +1,5 @@
 import type { JSONPlaceHolderData } from "./types";
+import axios, { } from 'axios';
 
 const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 let currentPage: number = 1;
@@ -42,8 +43,29 @@ const fetchDataWithFetch = async(searchTerm: string): Promise<void> => {
     if(!response.ok){
         throw new Error(`Response status: ${response.status}`)
     }
+    const data: JSONPlaceHolderData = await response.json();
     const totalItems = response.headers.get('X-Total-Count');
-    const data = await response.json();
-
     //displayResults()
+}
+
+const fetchDataWithAxios = async(searchTerm: string): Promise<void> => {
+    if(!searchTerm){
+        throw new Error(`There isn't a search term defined in form`);
+    }
+    axios.get(API_URL, {
+        params:{
+            q: searchTerm,
+            _page: currentPage,
+            _limit: itemsPerPage
+        }
+    }).then((response) => { 
+        const data = response.data;
+        const totalItems = response.headers['x-total-count'];
+        console.log({data}, {totalItems});
+        
+
+        // displayResults();
+    }).catch((error) => {
+        throw new Error(error)
+    });
 }

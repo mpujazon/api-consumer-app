@@ -137,6 +137,10 @@ button[type="submit"]:active {
     gap: 2rem;
 }
 
+#loading-icon{
+    width: 50px;
+}
+
 .response-status-container,
 .response-data-container {
     background-color: var(--card-bg);

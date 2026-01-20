@@ -1,3 +1,5 @@
+import type { JSONPlaceHolderData } from "./types";
+
 const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';
 let currentPage: number = 1;
 const itemsPerPage: number = 10;
@@ -11,7 +13,7 @@ const errorElement = document.getElementById('error-element') as HTMLParagraphEl
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const dynamicDataContainerEl = document.getElementById('dynamic-data-container') as HTMLDivElement;
 
-form.addEventListener('submit', (e: Event)=> {
+form.addEventListener('submit', async (e: Event)=> {
     e.preventDefault();
 });
 
@@ -30,4 +32,18 @@ const showError = (message: string): void => {
 
 const hideError = (): void => {
     errorElement.classList.add('hidden');
+}
+
+const fetchDataWithFetch = async(searchTerm: string): Promise<void> => {
+    if(!searchTerm){
+        throw new Error(`There isn't a search term defined in form`);
+    }
+    const response: Response = await fetch(`${API_URL}/?q=${searchTerm}&_page=${currentPage}&_limit=${itemsPerPage}`);
+    if(!response.ok){
+        throw new Error(`Response status: ${response.status}`)
+    }
+    const totalItems = response.headers.get('X-Total-Count');
+    const data = await response.json();
+
+    //displayResults()
 }

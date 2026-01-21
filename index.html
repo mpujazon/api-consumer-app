@@ -12,18 +12,24 @@
       <h1>Api Consumer App</h1>
       <section class="form-container">
         <form id="http-client-form">
-          <div class="select-group">
-            <label for="http-client">Select an http-client:</label>
-            <select name="http-client" id="http-client">
-              <option value="fetch">Use Fetch</option>
-              <option value="axios">Use Axios</option>
-            </select>
+          <div class="http-client-form__wrapper">
+            <div class="select-group">
+              <label for="http-client">Select an http-client:</label>
+              <select name="http-client" id="http-client">
+                <option value="fetch">Use Fetch</option>
+                <option value="axios">Use Axios</option>
+              </select>
+            </div>
+            <div class="search-group">
+              <label for="search">Search: </label>
+              <input type="text" name="search" id="search-input" placeholder="Search" required>
+            </div>
+            <button type="submit">Get data</button>
           </div>
-          <div class="search-group">
-            <label for="search">Search: </label>
-            <input type="text" name="search" id="search-input" placeholder="Search" required>
+          <div class="force-error-group">
+            <label for="force-error">Force an error</label>
+            <input type="checkbox" name="force-error" id="force-error">
           </div>
-          <button type="submit">Get data</button>
         </form>
       </section>
       <section class="response-container">

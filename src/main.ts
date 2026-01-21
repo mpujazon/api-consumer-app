@@ -11,6 +11,7 @@ const form = document.getElementById('http-client-form') as HTMLFormElement;
 const loadingContainerEl = document.getElementById('loading-container') as HTMLDivElement;
 const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
 const paginationButtonsContainer = document.getElementById('pagination-buttons-container') as HTMLDivElement;
+const forceErrorEl = document.getElementById('force-error') as HTMLInputElement;
 
 const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
@@ -43,6 +44,10 @@ async function fetchData() {
     showLoading();
     hideError();
     try {
+        if(forceErrorEl.checked){
+            throw new Error('You forced an error!');
+        };
+
         if (useAxios) {
             await fetchDataWithAxios(searchTerm);
         } else {
@@ -88,7 +93,7 @@ const fetchDataWithAxios = async(searchTerm: string): Promise<void> => {
 
         displayResults(data, totalItems);
     }).catch((error) => {
-        throw new Error(error)
+        throw new Error(error);
     });
 }
 

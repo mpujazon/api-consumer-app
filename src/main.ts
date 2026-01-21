@@ -8,7 +8,7 @@ const itemsPerPage: number = 9;
 const httpClientSelectorEl = document.getElementById('http-client') as HTMLSelectElement;
 const searchInputEl = document.getElementById('search-input') as HTMLInputElement;
 const form = document.getElementById('http-client-form') as HTMLFormElement;
-const loadingElement = document.getElementById('loading-icon') as HTMLImageElement;
+const loadingContainerEl = document.getElementById('loading-container') as HTMLDivElement;
 const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
 const paginationButtonsContainer = document.getElementById('pagination-buttons-container') as HTMLDivElement;
 
@@ -21,11 +21,11 @@ form.addEventListener('submit', async (e: Event)=> {
 });
 
 const showLoading = (): void => {
-    loadingElement.classList.remove('hidden');
+    loadingContainerEl.classList.remove('hidden');
 }
 
 const hideLoading = (): void => {
-    loadingElement.classList.add('hidden');
+    loadingContainerEl.classList.add('hidden');
 }
 
 const showError = (message: string): void => {

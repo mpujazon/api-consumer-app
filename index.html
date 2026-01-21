@@ -29,7 +29,6 @@
       <section class="response-container">
         <div class="response-status-container" id="response-status-container">
           <h2>Response Status</h2>
-          <img src="/loading.svg" alt="Loading icon" id="loading-icon" class="hidden">
           <p id="error-element" class="hidden"></p>
         </div>
         <div class="response-data-container">
@@ -41,6 +40,9 @@
         </div>
       </section>
     </main>
+    <div id="loading-container" class="hidden">
+          <img src="/loading.svg" alt="Loading icon" id="loading-icon">
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -138,7 +138,18 @@ button[type="submit"]:active {
 }
 
 #loading-icon{
-    width: 50px;
+    width: 80px;
+}
+
+#loading-container{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #error-element{

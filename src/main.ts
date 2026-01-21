@@ -129,6 +129,8 @@ const setupPagination = (totalItems: number): void => {
         }
         paginationButtonsContainer.appendChild(button); 
     }
+
+    currentPage = 1;
 }
 
 const handlePageButtonClick = (button: HTMLButtonElement): void => {

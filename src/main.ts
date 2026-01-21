@@ -9,11 +9,10 @@ const httpClientSelectorEl = document.getElementById('http-client') as HTMLSelec
 const searchInputEl = document.getElementById('search-input') as HTMLInputElement;
 const form = document.getElementById('http-client-form') as HTMLFormElement;
 const loadingContainerEl = document.getElementById('loading-container') as HTMLDivElement;
+const responseStatusContainer = document.getElementById('response-status-container') as HTMLDivElement;
 const errorElement = document.getElementById('error-element') as HTMLParagraphElement;
 const paginationButtonsContainer = document.getElementById('pagination-buttons-container') as HTMLDivElement;
 const forceErrorEl = document.getElementById('force-error') as HTMLInputElement;
-
-const responseStatusContainerEl = document.getElementById('response-status-container') as HTMLDivElement;
 const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
 
 form.addEventListener('submit', async (e: Event)=> {
@@ -31,11 +30,11 @@ const hideLoading = (): void => {
 
 const showError = (message: string): void => {
     errorElement.textContent = message;
-    errorElement.classList.remove('hidden');
+    responseStatusContainer.classList.remove('hidden');
 }
 
 const hideError = (): void => {
-    errorElement.classList.add('hidden');
+    responseStatusContainer.classList.add('hidden');
 }
 
 async function fetchData() {

@@ -16,8 +16,8 @@ const responseStatusContainerEl = document.getElementById('response-status-conta
 const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
 
 form.addEventListener('submit', async (e: Event)=> {
-    e.preventDefault();
-    fetchDataWithAxios(searchInputEl.value)
+    e.preventDefault();   
+    await fetchData();
 });
 
 const showLoading = (): void => {
@@ -37,6 +37,28 @@ const hideError = (): void => {
     errorElement.classList.add('hidden');
 }
 
+async function fetchData() {
+    const searchTerm = searchInputEl.value;
+    const useAxios = httpClientSelectorEl.value === 'axios';
+    showLoading();
+    hideError();
+    try {
+        if (useAxios) {
+            await fetchDataWithAxios(searchTerm);
+        } else {
+            await fetchDataWithFetch(searchTerm);
+        }
+    } catch (error) {
+        if(error instanceof Error){
+            showError(error.message);
+        }else{
+            showError("Unexpected error");
+        }
+    } finally {
+        hideLoading();
+    }
+}
+
 const fetchDataWithFetch = async(searchTerm: string): Promise<void> => {
     if(!searchTerm){
         throw new Error(`There isn't a search term defined in form`);
@@ -46,15 +68,15 @@ const fetchDataWithFetch = async(searchTerm: string): Promise<void> => {
         throw new Error(`Response status: ${response.status}`)
     }
     const data: JSONPlaceHolderData = await response.json();
-    const totalItems = response.headers.get('X-Total-Count');
-    //displayResults()
+    const totalItems = Number(response.headers.get('X-Total-Count'));
+    displayResults(data, totalItems);
 }
 
 const fetchDataWithAxios = async(searchTerm: string): Promise<void> => {
     if(!searchTerm){
         throw new Error(`There isn't a search term defined in form`);
     }
-    axios.get(API_URL, {
+    await axios.get(API_URL, {
         params:{
             q: searchTerm,
             _page: currentPage,
@@ -106,5 +128,5 @@ const setupPagination = (totalItems: number): void => {
 
 const handlePageButtonClick = (button: HTMLButtonElement): void => {
     currentPage = Number(button.textContent);
-    // fetchData();
+    fetchData();
 }

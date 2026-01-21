@@ -16,7 +16,7 @@ const forceErrorEl = document.getElementById('force-error') as HTMLInputElement;
 const resultsContainerEl = document.getElementById('results-container') as HTMLDivElement;
 
 form.addEventListener('submit', async (e: Event)=> {
-    e.preventDefault();   
+    e.preventDefault();
     await fetchData();
 });
 
@@ -46,6 +46,10 @@ async function fetchData() {
         if(forceErrorEl.checked){
             throw new Error('You forced an error!');
         };
+
+        if(!navigator.onLine){
+            throw new Error('No internet connection');
+        }
 
         if (useAxios) {
             await fetchDataWithAxios(searchTerm);
